@@ -126,6 +126,12 @@ h1 {
   color: #7882e2;
   text-transform: capitalize;
 }
+.content .logo {
+  justify-content: center;
+}
+
+
+
 .wrapper p{
   display: block;
   width: 90%;
