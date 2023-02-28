@@ -87,7 +87,33 @@ nav {
   justify-content: center;
 
 }
+.col-sm-6.col-md-2 .grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,82px);
+  gap: 4px;
+  padding-left: 6px;
+  max-height: 284px;
+  box-sizing: border-box;
+}
 
+.col-sm-6.col-md-2 .grid .grid-items {
+  position: relative;
+  border-radius: 2px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 700;
+  line-height: 44px;
+  padding: 0 8px;
+  width: 82px;
+  height: 44px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  white-space: nowrap;
+  text-align: center;
+  display: block;
+}
 .wrapper {
   display: flex;
   width: 100%;

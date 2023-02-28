@@ -1,12 +1,12 @@
 const Anime = require('../models/Anime.js');
 const { multiMongooseToObj }  = require('../../utils/mongoose');
-class NewsController {
+class HomeController {
 
     ///GET
     index(req, res, next) {
         Anime.find({})
             .then( animes =>  {
-                res.render('news' , 
+                res.render('home' , 
                 {
                     animes: multiMongooseToObj(animes)
                 });
@@ -15,4 +15,4 @@ class NewsController {
            
         }
     } 
-module.exports = new NewsController();
+module.exports = new HomeController;
