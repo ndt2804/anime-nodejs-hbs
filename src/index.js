@@ -21,9 +21,12 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
 
 //route
+mongoose.set('strictQuery', false);
 async function connect(){
     try {
-       await mongoose.connect(process.env.CONNECT_URL)
+       await mongoose.connect(process.env.CONNECT_URL, {
+           
+       })
         .then(() =>{ 
         app.listen(process.env.PORT, () => console.log(`Server running on port:  ${process.env.PORT} `))
         console.log('Connected!')});    

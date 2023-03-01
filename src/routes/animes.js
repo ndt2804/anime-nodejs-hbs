@@ -9,4 +9,6 @@ router.get('/:slug', animeController.index);
 
 
 
+
+
 module.exports = router;

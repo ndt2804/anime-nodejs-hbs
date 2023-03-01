@@ -1,15 +1,46 @@
 const Anime = require('../models/Anime.js');
+const Episodes = require('../models/Episodes.js');
 const { mongooseToObj }  = require('../../utils/mongoose');
+const { multiMongooseToObj }  = require('../../utils/mongoose');
 class AnimeController {
     ///GET
     index(req, res, next) {
-        Anime.findOne({ slug: req.params.slug })
+        Anime.findOne({ slug: req.params.slug})
             .then((anime) => {
-                res.render('animes/animes', {anime : mongooseToObj(anime)})
-            })
+                console.log(req.params.slug);
+                Episodes.find({ anime_id: anime._id })
+                .then((episodes) => {     
+                    console.log(JSON.stringify(anime._id));
+                    res.render('animes/animes', {anime : mongooseToObj(anime), episodes:multiMongooseToObj(episodes) });   
+                })
             .catch(next);
-    }   
-    // anime/create
+        })
+        .catch(next);
+    }
+    
+//   index(req, res, next) {
+//     Anime.findOne({ _id:'63fdbe170f751feae8b51b16'})
+//         .populate('episodes')
+//         .exec(function (err, anime) {
+//             if (err) return res.send(err);
+//             console.log(JSON.stringify(anime.episodes, null, 2));
+//     })
+// }
+// index(req, res, next) {
+//         Episodes.find({ anime_id: "63fdbcb00f751feae8b51b15" })
+//             .then((Episodes) => {        
+//                 res.json(Episodes);
+//                 console.log(req.params.anime_id);
+//                 console.log(Episodes.anime_id);
+
+//             })
+//             .catch(next);
+//     }
+
+
+
+
+    // anime/create 
     create(req, res, next) {
         res.render('animes/create');
     }
