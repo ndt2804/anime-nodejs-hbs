@@ -6,27 +6,28 @@ class AnimeController {
     ///GET
     // index(req, res, next) {
     //     Anime.findOne({ slug: req.params.slug})
+    //         .populate('episodes')    
     //         .then((anime) => {
-    //             console.log(anime._id);
-    //             Episodes.find({  }) 
-    //             .populate( 'anime_id')
+    //             Episodes.find({anime_id: anime._id})
     //             .then((episodes) => {     
-    //                 res.json(episodes)
-    //                 // res.render('animes/animes', {anime : mongooseToObj(anime), episodes:multiMongooseToObj(episodes) });   
-    //             })
+    //         res.json(episodes)
+    //          // res.render('animes/animes', {anime : mongooseToObj(anime), episodes:multiMongooseToObj(episodes) });   
+    //         })
     //         .catch(next);
     //     })
     //     .catch(next);
     // }
-    
-  index(req, res, next) {
-    Anime.findOne({slug: req.params.slug})
-        .populate('episodes')
-        .exec(function (err, anime) {
-            if (err) return res.send(err);
-            console.log(anime);
-    })
-}
+    index(req, res, next) {
+             Anime.findOne({ slug: req.params.slug})
+                 .populate('episodes')    
+                 .then((anime) => {
+                    
+                //  res.json(anime.episodes)
+                   res.render('animes/animes', {anime : mongooseToObj(anime) });   
+                 })
+                 .catch(next);
+     }
+
 // index(req, res, next) {
 //         Episodes.find({ anime_id: "63fdbcb00f751feae8b51b15" })
 //             .then((Episodes) => {        

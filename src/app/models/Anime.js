@@ -10,7 +10,7 @@ const Anime = new Schema ({
     image:{type: String} ,
     slug: {type: String, slug: 'name', unique: true},
     videoID: {type: String, required: true},
-    episodes: [{ type: Schema.Types.ObjectId, ref: 'episodes' }],
+    episodes: [{ type: Schema.Types.ObjectId, ref: 'Episodes' }],
     }, 
 {
     timestamps: true,

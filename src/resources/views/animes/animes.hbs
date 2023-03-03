@@ -10,11 +10,17 @@
         <div class="col-sm-6 col-md-2">
             <section>
             <div class="grid">
-                {{#each episodes}}
+                {{!-- {{#each episodes}}
                  <div class="grid-items">
                    <label  for="">{{this.episode}}</label>             
                 </div>
-                {{/each}}
+                {{/each}} --}}
+                  {{#each animes}}
+                 <div class="grid-items">
+                   <label  for="">{{this.episodes.[0]}}</label>  
+                     <a href="/anime/{{this.slug}}"></a>
+                </div>
+              {{/each}}
             </div>
             </section>
         </div>
