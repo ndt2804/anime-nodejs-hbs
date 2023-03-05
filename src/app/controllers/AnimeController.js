@@ -19,13 +19,16 @@ class AnimeController {
     // }
     index(req, res, next) {
              Anime.findOne({ slug: req.params.slug})
-                 .populate('episodes')    
-                 .then((anime) => {
-                    
-                //  res.json(anime.episodes)
-                   res.render('animes/animes', {anime : mongooseToObj(anime) });   
-                 })
+                .populate('episodes')    
+                .then((anime) => {
+                Episodes.find({_id: anime.episodes})
+                .then((episodes) => {   
+                //  res.json(episodes)
+            res.render('animes/animes', {anime : mongooseToObj(anime), episodes:multiMongooseToObj(episodes) });   
+            })
                  .catch(next);
+                })
+         .catch(next);
      }
 
 // index(req, res, next) {

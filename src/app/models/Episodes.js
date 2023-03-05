@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Định nghĩa schema cho tập phim
 const Episodes = new Schema ({
-  anime_id:  { type: Schema.Types.ObjectId, ref: 'Anime', required: true },
+  episode_video_id: {type: String, required: true},
   episode: { type: Number, required: true },
   title: { type: String, required: true },
   release: { type: Date, required: true },
