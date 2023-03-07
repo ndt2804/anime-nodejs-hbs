@@ -6,10 +6,7 @@ class HomeController {
     index(req, res, next) {
         Anime.find({})
             .then( animes =>  {
-                res.render('home' , 
-                {
-                    animes: multiMongooseToObj(animes)
-                });
+                res.render('home' , {animes: multiMongooseToObj(animes)});
             })
             .catch(next);
            
