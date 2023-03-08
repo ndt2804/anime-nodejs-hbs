@@ -19,6 +19,7 @@ class EpisodeController {
             res.render('animes/episodes', {episodes: multiMongooseToObj(episodes) });   
         })
     }
+   
     
 
     // show(req,res) {

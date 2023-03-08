@@ -5,18 +5,33 @@ const { multiMongooseToObj }  = require('../../utils/mongoose');
 class AnimeController {
     ///GET
     index(req, res, next) {
+        
              Anime.findOne({ slug: req.params.slug})
                 .populate('episodes')    
                 .then((anime) => {
                 Episodes.find({_id: anime.episodes})
                 .then((episodes) => {   
-                //  res.json(episodes)
-            res.render('animes/animes', {anime : mongooseToObj(anime), episodes: multiMongooseToObj(episodes) });   
-            })
+                    //  res.json(episodes)
+                    res.render('animes/animes', {anime : mongooseToObj(anime), episodes: multiMongooseToObj(episodes) }); 
+                   // res.render('animes/episodes', {anime : mongooseToObj(anime), episodes: multiMongooseToObj(episodes) }); 
+                })
                  .catch(next);
                 })
          .catch(next);
     }
+    // show(req, res, next) {
+    //     Anime.findOne({ slug: req.params.slug})
+    //        .populate('episodes')    
+    //        .then((anime) => {
+    //        Episodes.find({_id: anime.episodes})
+    //        .then((episodes) => {   
+    //            //  res.json(episodes)
+    //            res.render('animes/episodes', {anime : mongooseToObj(anime), episodes: multiMongooseToObj(episodes) }); 
+    //    })
+    //         .catch(next);
+    //        })
+    // .catch(next);
+
 
     // anime/create 
     create(req, res, next) {
