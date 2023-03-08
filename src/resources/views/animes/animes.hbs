@@ -3,28 +3,32 @@
         <div class="col-sm-10 col-md-10">
               <section>
             <H3>{{anime.name}}</H3>
-            <iframe width="1080px" height="620px" src="https://www.youtube.com/embed/{{anime.videoID}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe id="video-player" width="1080px" height="620px" src="https://www.youtube.com/embed/{{anime.videoID}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <p>{{anime.description}}</p>
             <p>{{anime.slug}}</p>
-            
             </section>
         </div>
         <div class="col-sm-6 col-md-2">
             <section>
             <div class="grid">
-
-                 {{#each episodes}}
-                <a href="/anime/{{../anime.slug}}/{{this.slug}}">
-                  <button>{{this.episode}}</button>
-                </a>
-                <h3>{{this.episode_video_id}}</h3>
-                <h1>{{../anime.slug}}/{{this.slug}}</h1>
-              {{/each}}
+                {{#each anime.episodes}}
+                    <button class="episode-button" data-episode-video-id="{{this.episode_video_id}}">{{this.episode}}</button>
+                    
+                  {{/each}}
             </div>
             </section>
-        </div>
+          </div>
+        
     </div>
 </div>
 <script>
-      
+const videoPlayer = document.getElementById('video-player');
+const episodeButtons = document.querySelectorAll('.episode-button');
+  episodeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const episodeVideoId = button.dataset.episodeVideoId;
+      const videoUrl = `https://www.youtube.com/embed/${episodeVideoId}`;
+      videoPlayer.setAttribute('src', videoUrl);
+    });
+  });
 </script>
