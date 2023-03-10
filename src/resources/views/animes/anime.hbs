@@ -18,15 +18,15 @@
         </button>
     </div>
 
-
-
     <div class="anime-hot">
         <h3>ANIME HOT</h3>
         <div class="grid">
             {{#each animes}}
                 <div class="grid-items">
                     <img src="{{this.image}}" class="card-img-top" alt="..."> 
+                    <button class="items-button">More info</button>
                 </div>
+                
             {{/each}}
         </div>
     </div>
@@ -37,6 +37,7 @@
                 <div class="grid-items">
                     <img src="{{image}}" class="card-img-top" alt="..."> 
                 </div>
+               
             {{/each}}
         </div>
     </div>
