@@ -1,14 +1,14 @@
-const Anime = require('../models/Anime.js');
+const Post = require('../models/Post');
 const { multiMongooseToObj }  = require('../../utils/mongoose');
 class NewsController {
 
     ///GET
     index(req, res, next) {
-        Anime.find({})
-            .then( animes =>  {
+        Post.find({})
+            .then( posts =>  {
                 res.render('news' , 
                 {
-                    animes: multiMongooseToObj(animes)
+                    posts: multiMongooseToObj(posts)
                 });
             })
             .catch(next);
