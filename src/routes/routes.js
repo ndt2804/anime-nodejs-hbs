@@ -11,6 +11,7 @@ function route(app) {
     app.use('/contact', contactRouter);
     app.use('/forum', forumRouter);
     app.use('/admin', adminRouter);
+    
   
     app.use('/search', (req, res) => {
       res.render('search');
