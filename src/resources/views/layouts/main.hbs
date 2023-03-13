@@ -13,15 +13,23 @@
     <link rel="icon" type="image/png" href="/img/anis.png" sizes="32x32">
 </head>
 <body>
-    <div class="app">
+    {{#unless isAdmin}}
+        <div class="app">
+            {{>header}}
+            <div class="container">
+                {{{body}}}
+            </div>
+            {{>footer}}
+        </div>
+    {{/unless}} 
+    {{>admin}}
+    {{!-- <div class="app">
         {{>header}}
         <div class="container">
             {{{body}}}
         
         </div>
-           
-       
          {{>footer}}
-    </div>
+    </div> --}}
 </body>
 </html>

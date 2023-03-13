@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 // Định nghĩa schema cho post
 const Post = new Schema ({
     title: { type: String, required: true },
+    image: { type: String, required: true },
     content: { type: String, required: true },
     author:  { type: String, required: true },
 

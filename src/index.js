@@ -20,6 +20,12 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
 
+
+//midleware check xem phải url admin hay không, có thì trả về true, không thì fales
+app.use(function(req, res, next) {
+    res.locals.isAdmin = req.originalUrl.startsWith('/admin');
+    next();
+  });
 //route
 mongoose.set('strictQuery', false);
 async function connect(){
