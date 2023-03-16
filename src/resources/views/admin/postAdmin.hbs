@@ -1,6 +1,6 @@
 
 <div class="home-section">
-    <h3>Trang nè là trang Anime</h3>
+    <h3>Trang nè là trang POST</h3>
 
     <main id="site-main">
             <div class="container">
@@ -15,7 +15,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Image</th>
+                                <th>Image</th>  
                                 <th>Start</th>
                                 <th>End</th>
                                 <th>Status</th>
@@ -24,12 +24,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                {{#each data.animes}}   
+                                {{#each data.posts}}   
                                 <td>{{@index}}</td>
-                                <td>{{this.name}}</td>
+                                <td>{{this.title}}</td>
                                 <td> <img src="{{this.image}}" alt="" width="90" height="90"></td>
-                                <td>11</td>
-                                <td>12</td>
+                                <td>{{this.content}}</td>
+                                <td>{{this.author}}</td>
                                 <th>On Going</th>
 
                                 <td>

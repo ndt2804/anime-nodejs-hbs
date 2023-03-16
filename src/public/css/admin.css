@@ -383,9 +383,7 @@ nav.open ~ .overlay {
   pointer-events: auto;
 }
 
-
-
-/* css admin/animes */
+/* CSS admin/animes */
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&display=swap');
 
 :root{
@@ -407,8 +405,7 @@ a {
 }
 
 .container{
-    max-width: 1024px;
-    margin: 0;
+    max-width: 1300px;
 }
 
 .nav-brand{
@@ -460,7 +457,6 @@ a {
 }
 
 #site-main{
-    margin-top: 6em;
     font-family: 'Barlow', sans-serif;
 }
 

@@ -12,8 +12,7 @@ class AnimeController {
                     animes: multiMongooseToObj(animes)
                 });
             })
-            .catch(next);
-           
+            .catch(next);   
         }
     
     index(req, res, next) {
@@ -21,6 +20,7 @@ class AnimeController {
             .populate('episodes')    
             .then((anime) => {
                 res.render('animes/animes', {anime : mongooseToObj(anime)}); 
+              
             })
         .catch(next);
     }
