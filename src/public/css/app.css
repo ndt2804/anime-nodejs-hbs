@@ -8,6 +8,10 @@
   min-height: 100vh;
   background-color: #f3f5f8;
 }
+.container {
+  margin: auto;
+  max-width: 1380px;
+}
 
 /* css header */
   .header  .nav_buttons button {
@@ -25,19 +29,55 @@
   cursor: pointer;
   outline: none;
 }
-.header .nav-buttons .btn-login {
+.header .nav_buttons .btn-login {
   background-color: #23c483;
 }
 
-.header .nav-buttons button:hover {
+.header .nav_buttons button:hover {
   background-color: #23c483;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
   transform: translateY(-7px);
 }
 
-.header .nav-buttons  button:active {
+.header .nav_buttons  button:active {
   transform: translateY(-1px);
+}
+.header .search .nav_search_button {
+  margin-left: 10px;
+  padding: 0em 2em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+
+}
+.header .search .nav_search_button:hover {
+  transform: translateY(-7px);
+}
+.header .search .input_search {
+  background-color: #fff; /* màu nền của input */
+  border: 2px solid #ddd; /* độ rộng và màu viền của input */
+  border-radius: 20px; /* độ cong viền của input */
+  color: #333; /* màu chữ trong input */
+  font-size: 16px; /* kích thước chữ trong input */
+  padding: 10px 20px; /* khoảng cách giữa vùng chữ và viền của input */
+  width: 300px; /* độ rộng của input */  
+  height: 30px;
+}
+.header .search .input_search:focus {
+  border-color: #23c483; /* đổi màu viền khi focus */
+  box-shadow: 0 0 5px #23c483; /* đổ bóng khi focus */
+  outline: none; /* xóa đường viền khi focus */
+
 }
 
 nav {
@@ -91,16 +131,115 @@ nav {
 /* hết css header */
 
 
-
-
-
-
-
-.carousel-item img {
-  width: 1080px;
-  height: 720px;
-  object-fit: cover;
+.slider{
+  width: 800px;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
 }
+
+.slides{
+  width: 500%;
+  height: 500px;
+  display: flex;
+}
+
+.slides input{
+  display: none;
+}
+
+.slide{
+  width: 20%;
+  transition: 2s;
+}
+
+.slide img{
+  width: 800px;
+  height: 500px;
+}
+
+/*css for manual slide navigation*/
+
+.navigation-manual{
+  position: absolute;
+  width: 800px;
+  margin-top: -40px;
+  display: flex;
+  justify-content: center;
+}
+
+.manual-btn{
+  border: 2px solid #40D3DC;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.manual-btn:not(:last-child){
+  margin-right: 40px;
+}
+
+.manual-btn:hover{
+  background: #40D3DC;
+}
+
+#radio1:checked ~ .first{
+  margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+  margin-left: -20%;
+}
+
+#radio3:checked ~ .first{
+  margin-left: -40%;
+}
+
+#radio4:checked ~ .first{
+  margin-left: -60%;
+}
+
+/*css for automatic navigation*/
+
+.navigation-auto{
+  position: absolute;
+  display: flex;
+  width: 800px;
+  justify-content: center;
+  margin-top: 460px;
+}
+
+.navigation-auto div{
+  border: 2px solid #40D3DC;
+  padding: 5px;
+  border-radius: 10px;
+  transition: 1s;
+}
+
+.navigation-auto div:not(:last-child){
+  margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1{
+  background: #40D3DC;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2{
+  background: #40D3DC;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3{
+  background: #40D3DC;
+}
+
+#radio4:checked ~ .navigation-auto .auto-btn4{
+  background: #40D3DC;
+}
+      
+
+
+
 
 .card {
  width: 190px;
@@ -287,11 +426,7 @@ nav {
   color: red;
 }
 
-.container {
-  margin: auto;
-  max-width: 1080px;
 
-}
 .col-sm-6.col-md-2 .grid {
   margin-top: 16px;
   display: grid;
