@@ -1,0 +1,20 @@
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "nguyenduytan",
+    "mail": "nguyenduytan@gmail.com",
+    "password": "Duytanhime107@"
+    
+}
+#####
+POST http://localhost:3000/api/auth/login 
+Content-Type: application/json
+
+{
+    "mail": "nguyenduytan@gmail.com",
+    "password": "Duytanhime107@"
+}
+      
+####
+GET https://www.google.com
