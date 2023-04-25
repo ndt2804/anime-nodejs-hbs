@@ -4,7 +4,8 @@ const contactRouter = require('./contact');
 const animesRouter = require('./animes');
 const forumRouter = require('./forum');
 const adminRouter = require('./admin');
-const authRouter = require('./auth');
+
+const authRouter = require('./auth')
 
 function route(app) {
     app.use('/news', newsRouter);
@@ -12,12 +13,13 @@ function route(app) {
     app.use('/contact', contactRouter);
     app.use('/forum', forumRouter);
     app.use('/admin', adminRouter);
-    app.post('/api/auth/register',authRouter);
-    app.post('/api/auth/login',authRouter);
+
+    app.use('/auth', authRouter);
     app.use('/search', (req, res) => {
       res.render('search');
     })
     app.use('/', homeRouter);
+    
     
 
 }

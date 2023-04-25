@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const  {engine } = require('express-handlebars');
 const app = express()
+const session = require('express-session');
 const bodyParser = require('body-parser')
 const route = require('./routes/routes.js');
 const mongoose =  require('mongoose');
@@ -11,9 +12,14 @@ require('dotenv').config()
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: false }))
-
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true
+  }));
 // parse application/json
 app.use(bodyParser.json())
+
 app.engine('hbs', engine({
     extname: '.hbs',
 }));
