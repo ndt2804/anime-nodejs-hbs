@@ -4,9 +4,15 @@ class HomeController {
 
     ///GET
     index(req, res, next) {
+        let sesh = req.session;
+
         Anime.find({})
             .then( animes =>  {
-                res.render('home' , {animes: multiMongooseToObj(animes)});
+                res.render('home' , { 
+                    animes: multiMongooseToObj(animes), 
+                    loggedIn:sesh.loggedIn, 
+                    userLogin:sesh.userLogin 
+                });
             })
             .catch(next);
            

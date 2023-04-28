@@ -13,9 +13,13 @@
         <input class="input_search" type="search" placeholder="Search" aria-label="Search">
         <button class="nav_search_button" type="submit">SEARCH</button>
      </form>
-    <div class="nav_buttons">
-    <button>Sign Up</button>
-    <button class="btn-login">LogIn</button>      
+    <div class="nav_buttons">  
+        {{#if loggedIn}}
+        <h3>{{userLogin.mail}}</h3>
+        {{else}}
+            <button><a href="/logout">Logout</a></button>
+            <button class="btn-login"><a href="/login">Login</a></button>
+        {{/if}} 
     </div>
     
   </nav>

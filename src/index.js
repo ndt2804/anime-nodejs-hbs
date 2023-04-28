@@ -13,9 +13,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true
+    secret: 'SESSION_SECRET', // Chuỗi bí mật để mã hóa session ID
+    resave: false, // Không lưu lại session nếu không có sự thay đổi
+    saveUninitialized: false // Không tạo mới session nếu không có sự thay đổi
   }));
 // parse application/json
 app.use(bodyParser.json())
