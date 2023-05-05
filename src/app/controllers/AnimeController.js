@@ -5,21 +5,31 @@ const {multiMongooseToObj} = require('../../utils/mongoose');
 class AnimeController {
     ///GET
     show(req, res, next) {
+        let sesh = req.session;
+
         Anime.find({})
             .then( animes =>  {
                 res.render('animes/anime' , 
                 {
-                    animes: multiMongooseToObj(animes)
+                    animes: multiMongooseToObj(animes),
+                    loggedIn:sesh.loggedIn, 
+                    userLogin:sesh.userLogin,
                 });
             })
             .catch(next);   
         }
     
     index(req, res, next) {
+        let sesh = req.session;
+
         Anime.findOne({ slug: req.params.slug})
             .populate('episodes')    
             .then((anime) => {
-                res.render('animes/animes', {anime : mongooseToObj(anime)}); 
+                res.render('animes/animes', {
+                    anime : mongooseToObj(anime),
+                    loggedIn:sesh.loggedIn, 
+                    userLogin:sesh.userLogin,
+                }); 
               
             })
         .catch(next);

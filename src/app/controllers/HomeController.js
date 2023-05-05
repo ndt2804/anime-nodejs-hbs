@@ -5,7 +5,6 @@ class HomeController {
     ///GET
     index(req, res, next) {
         let sesh = req.session;
-
         Anime.find({})
             .then( animes =>  {
                 res.render('home' , { 
