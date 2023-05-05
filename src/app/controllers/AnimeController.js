@@ -18,7 +18,19 @@ class AnimeController {
             })
             .catch(next);   
         }
-    
+        recommend(req, res, next) {
+            let sesh = req.session;
+            Anime.find({})
+                .then( animes =>  {
+                    res.render('animes/animes' , 
+                    {
+                        animes: multiMongooseToObj(animes),
+                        loggedIn:sesh.loggedIn, 
+                        userLogin:sesh.userLogin,
+                    });
+                })
+                .catch(next);   
+            }
     index(req, res, next) {
         let sesh = req.session;
 
