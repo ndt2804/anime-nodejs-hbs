@@ -11,10 +11,12 @@ const Anime = new Schema ({
     slug: {type: String, slug: 'name', unique: true},
     videoID: {type: String, required: true},
     episodes: [{ type: Schema.Types.ObjectId, ref: 'Episodes' }],
+    genres: { type: [String], required: true},
     }, 
-{
-    timestamps: true,
-});
+    {
+        timestamps: true,
+    }
+);
 
 
 module.exports = mongoose.model('Anime', Anime);
