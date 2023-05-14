@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Định nghĩa schema cho post
-const User = new Schema ({
+const User = new Schema({
     username: { type: String, unique: true },
     password: { type: String, requied: true },
     mail: { type: String, unique: true },

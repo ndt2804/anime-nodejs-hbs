@@ -1,52 +1,49 @@
-
 <div class="home-section">
     <h3>Trang nè là trang POST</h3>
 
     <main id="site-main">
-            <div class="container">
-                <div class="box-nav d-flex justify-between">
-                    <a href="/add-user" class="border-shadow">
-                        <span class="text-gradient">New User <i class="fas fa-user"></i></span>
-                    </a>
-                </div>
-                <form action="/" method="POST">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Image</th>  
-                                <th>Start</th>
-                                <th>End</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                {{#each data.posts}}   
-                                <td>{{@index}}</td>
-                                <td>{{this.title}}</td>
-                                <td> <img src="{{this.image}}" alt="" width="90" height="90"></td>
-                                <td>{{this.content}}</td>
-                                <td>{{this.author}}</td>
-                                <th>On Going</th>
-
-                                <td>
-                                    <a href="" class="btn border-shadow update">
-                                        <span class="text-gradient"><i class="fas fa-edit"></i></span>
-                                    </a>
-                                    <a class="btn border-shadow delete" data-id=>
-                                        <span class="text-gradient"><i class="fas fa-times"></i></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            {{/each}}                    
-                        </tbody>
-                    </table>
-                </form>
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <a href="/add-user" class="border-shadow">
+                    <span class="text-gradient">New User <i class="fas fa-user"></i></span>
+                </a>
             </div>
+            <form action="/" method="POST">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {{#each data.posts}}
+                            <td>{{@index}}</td>
+                            <td>{{this.title}}</td>
+                            <td> <img src="{{this.image}}" alt="" width="90" height="90"></td>
+                            <td>{{this.content}}</td>
+                            <td>{{this.author}}</td>
+                            <th>On Going</th>
+
+                            <td>
+                                <a href="" class="btn border-shadow update">
+                                    <span class="text-gradient"><i class="fas fa-edit"></i></span>
+                                </a>
+                                <a class="btn border-shadow delete" data-id=>
+                                    <span class="text-gradient"><i class="fas fa-times"></i></span>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </form>
+        </div>
     </main>
 </div>
-
-

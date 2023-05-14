@@ -6,32 +6,32 @@ exports.getSignup = (req, res) => {
 };
 
 exports.postSignup = async (req, res) => {
-    try {
-      const { username, password, mail } = req.body;
-      const user = await User.findOne({ mail });
-      if (user) {
-        return res.render('register', {
-          message: 'Email đã được đăng ký'
-        });
-      }
-      const hashedPassword = await bcrypt.hash(password, 12);
-      const newUser = new User({
-        username,
-        password: hashedPassword,
-        mail,
-      });
-      await newUser.save();
-      res.render('login', {
-        message: 'Đăng ký thành công. Vui lòng đăng nhập'
-      });
-    } catch (err) {
-      console.log(err);
-      res.render('register', {
-        message: 'Có lỗi xảy ra, vui lòng thử lại'
+  try {
+    const { username, password, mail } = req.body;
+    const user = await User.findOne({ mail });
+    if (user) {
+      return res.render('register', {
+        message: 'Email đã được đăng ký'
       });
     }
-  };
-  
+    const hashedPassword = await bcrypt.hash(password, 12);
+    const newUser = new User({
+      username,
+      password: hashedPassword,
+      mail,
+    });
+    await newUser.save();
+    res.render('login', {
+      message: 'Đăng ký thành công. Vui lòng đăng nhập'
+    });
+  } catch (err) {
+    console.log(err);
+    res.render('register', {
+      message: 'Có lỗi xảy ra, vui lòng thử lại'
+    });
+  }
+};
+
 
 exports.getLogin = (req, res) => {
   res.render('login');

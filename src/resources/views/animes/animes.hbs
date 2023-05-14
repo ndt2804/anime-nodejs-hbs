@@ -1,39 +1,42 @@
 <div class="mt-2">
-    <div class="row">
-        <div class="col-sm-8 col-md-10">
-              <section>
-               <h2>{{pageData.anime.name}}</h2>
-            <iframe id="video-player" width="1080px" height="620px" src="https://www.youtube.com/embed/{{pageData.anime.videoID}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <p>{{pageData.anime.description}}</p>
-            <p>{{pageData.anime.slug}}</p>
-            </section>
-        </div>
-        <div class="col-sm-6 col-md-2">
-            <section>
-            <div class="grid">
-                {{#each pageData.anime.episodes}}
-                    <button class="episode-button" data-episode-video-id="{{this.episode_video_id}}">{{this.episode}}</button>
-                  {{/each}}
-            </div>
-            </section>
-          </div>      
-              <section>
-
-              <div class="grid">
-              {{#each pageData.recommendations}}    
-                  <div class="grid-items">
-                      <img src="{{this.image}}" class="card-img-top" alt="..."> 
-                  </div> 
-              {{/each}}
-              </div>
-              </section>
-        </div>
-      
+  <div class="row">
+    <div class="col-sm-8 col-md-10">
+      <section>
+        <h2>{{pageData.anime.name}}</h2>
+        <iframe id="video-player" width="1080px" height="620px"
+          src="https://www.youtube.com/embed/{{pageData.anime.videoID}}" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+        <p>{{pageData.anime.description}}</p>
+        <p>{{pageData.anime.slug}}</p>
+      </section>
     </div>
+    <div class="col-sm-6 col-md-2">
+      <section>
+        <div class="grid">
+          {{#each pageData.anime.episodes}}
+          <button class="episode-button" data-episode-video-id="{{this.episode_video_id}}">{{this.episode}}</button>
+          {{/each}}
+        </div>
+      </section>
+    </div>
+    <section>
+
+      <div class="grid">
+        {{#each pageData.recommendations}}
+        <div class="grid-items">
+          <img src="{{this.image}}" class="card-img-top" alt="...">
+        </div>
+        {{/each}}
+      </div>
+    </section>
+  </div>
+
+</div>
 </div>
 <script>
-const videoPlayer = document.getElementById('video-player');
-const episodeButtons = document.querySelectorAll('.episode-button');
+  const videoPlayer = document.getElementById('video-player');
+  const episodeButtons = document.querySelectorAll('.episode-button');
   episodeButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const episodeVideoId = button.dataset.episodeVideoId;

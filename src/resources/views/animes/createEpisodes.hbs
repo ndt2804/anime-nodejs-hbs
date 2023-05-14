@@ -1,25 +1,24 @@
-
 <div class="mt-4">
     <h3>Tạo Anime</h3>
-     <form method="POST" action="/anime/storeEp">
+    <form method="POST" action="/anime/storeEp">
         <label for="anime-select" hidden>Anime</label>
-        <select id="anime-select" name="_id" value="default" >
+        <select id="anime-select" name="_id" value="default">
             {{#each animes}}
-                <option value="{{this._id}}">{{this.name}}</option>
+            <option value="{{this._id}}">{{this.name}}</option>
             {{/each}}
         </select>
-    <div class="form-group">
-        <label for="episode">episode </label>
-        <input type="text" class="form-control" id="episode" name="episode">
-    </div>
-   <div class="form-group">
-        <label for="title">title</label>
-        <input type="text" class="form-control" id="title" name="title">
-    </div>
-    <div class="form-group">
-        <label for="episode_video_id">episode_video_id</label>
-        <input type="text" class="form-control" id="episode_video_id" name="episode_video_id">
-    </div>
-    <button type="submit" class="btn btn-primary">OK</button>
+        <div class="form-group">
+            <label for="episode">episode </label>
+            <input type="text" class="form-control" id="episode" name="episode">
+        </div>
+        <div class="form-group">
+            <label for="title">title</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group">
+            <label for="episode_video_id">episode_video_id</label>
+            <input type="text" class="form-control" id="episode_video_id" name="episode_video_id">
+        </div>
+        <button type="submit" class="btn btn-primary">OK</button>
     </form>
 </div>

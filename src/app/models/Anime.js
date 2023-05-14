@@ -4,15 +4,15 @@ const slug = require('mongoose-slug-generator');
 
 mongoose.plugin(slug);
 
-const Anime = new Schema ({
-    name:{ type: String, required: true} ,
-    description:{type: String} ,
-    image:{type: String} ,
-    slug: {type: String, slug: 'name', unique: true},
-    videoID: {type: String, required: true},
+const Anime = new Schema({
+    name: { type: String, required: true },
+    description: { type: String },
+    image: { type: String },
+    slug: { type: String, slug: 'name', unique: true },
+    videoID: { type: String, required: true },
     episodes: [{ type: Schema.Types.ObjectId, ref: 'Episodes' }],
-    genres: { type: [String], required: true},
-    }, 
+    genres: { type: [String], required: true },
+},
     {
         timestamps: true,
     }
