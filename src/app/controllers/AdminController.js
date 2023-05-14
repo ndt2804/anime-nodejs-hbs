@@ -7,10 +7,6 @@ class ContactController {
     index(req, res, next) {
         res.render('admin/homeAdmin', { layout: 'admin' });
     }
-    // show(req, res, next) {
-    //     res.render('admin/animeAdmin',{ layout: 'admin' });
-    // }
-    // showAnime(req, res, next) {
     showAnime(req, res, next) {
         Anime.find({})
             .then(animes => {
@@ -35,10 +31,6 @@ class ContactController {
                     animes: mongooseToObj(animes)
                 };
                 res.json(data);
-                // res.render('admin/animeAdmin', {
-                //     layout: 'admin',
-                //     data: data
-                // });
             })
             .catch(error => {
                 console.log(error);

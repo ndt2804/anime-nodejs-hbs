@@ -18,36 +18,6 @@ class AnimeController {
             })
             .catch(next);
     }
-
-    //     recommend(req, res, next) {
-    //         let sesh = req.session;
-    //         Anime.find({})
-    //             .then( animes =>  {
-    //                 res.render('animes/animes' , 
-    //                 {
-    //                     animes: multiMongooseToObj(animes),
-    //                     loggedIn:sesh.loggedIn, 
-    //                     userLogin:sesh.userLogin,
-    //                 });
-    //             })
-    //             .catch(next);   
-    //         }
-
-    // index(req, res, next) {
-    //     let sesh = req.session;
-
-    //     Anime.findOne({ slug: req.params.slug})
-    //         .populate('episodes')    
-    //         .then((anime) => {
-    //             res.render('animes/animes', {
-    //                 anime : mongooseToObj(anime),
-    //                 loggedIn:sesh.loggedIn, 
-    //                 userLogin:sesh.userLogin,
-    //             });     
-    //         })
-    //     .catch(next);
-    // }
-
     video(req, res, next) {
         let sesh = req.session;
         let pageData = {};
