@@ -21,7 +21,7 @@
     "express-validation": "^4.1.0",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.1.0",
-    "mongoose": "^6.10.1",
+    "mongoose": "^7.0.0",
     "mongoose-slug-generator": "^1.0.4"
   },
   "devDependencies": {
