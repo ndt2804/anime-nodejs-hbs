@@ -1,15 +1,31 @@
 <div class="mt-2">
   <div class="row">
-    <div class="col-sm-8 col-md-10">
-      <section>
-        <h2>{{pageData.anime.name}}</h2>
-        <iframe id="video-player" width="1080px" height="620px"
-          src="https://www.youtube.com/embed/{{pageData.anime.videoID}}" title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
-        <p>{{pageData.anime.description}}</p>
-        <p>{{pageData.anime.slug}}</p>
-      </section>
+
+    <div class="col-sm-8 col-md-5">
+      <h2>{{pageData.anime.name}}</h2>
+      <iframe id="video-player" width="1080px" height="620px"
+        src="https://www.youtube.com/embed/{{pageData.anime.videoID}}" title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+      <p>{{pageData.anime.description}}</p>
+
+      <div class="badge-genres">
+        {{#each pageData.anime.genres}}
+        <div class="badge-genre">{{this}}</div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="rate">
+      <input type="radio" id="star5" name="rate" value="5" />
+      <label for="star5" title="text">5 stars</label>
+      <input type="radio" id="star4" name="rate" value="4" />
+      <label for="star4" title="text">4 stars</label>
+      <input type="radio" id="star3" name="rate" value="3" />
+      <label for="star3" title="text">3 stars</label>
+      <input type="radio" id="star2" name="rate" value="2" />
+      <label for="star2" title="text">2 stars</label>
+      <input type="radio" id="star1" name="rate" value="1" />
+      <label for="star1" title="text">1 star</label>
     </div>
     <div class="col-sm-6 col-md-2">
       <section>
@@ -20,8 +36,10 @@
         </div>
       </section>
     </div>
-    <section>
 
+
+
+    <section>
       <div class="grid">
         {{#each pageData.recommendations}}
         <div class="grid-items">
@@ -31,16 +49,17 @@
       </div>
     </section>
   </div>
-
 </div>
 </div>
 <script>
   const videoPlayer = document.getElementById('video-player');
   const episodeButtons = document.querySelectorAll('.episode-button');
+
   episodeButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const episodeVideoId = button.dataset.episodeVideoId;
       const videoUrl = `https://www.youtube.com/embed/${episodeVideoId}`;
+      const title = button.dataset.title;
       videoPlayer.setAttribute('src', videoUrl);
     });
   });
