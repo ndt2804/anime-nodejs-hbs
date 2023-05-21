@@ -16,17 +16,24 @@
       </div>
     </div>
     <div class="rate">
-      <input type="radio" id="star5" name="rate" value="5" />
-      <label for="star5" title="text">5 stars</label>
-      <input type="radio" id="star4" name="rate" value="4" />
-      <label for="star4" title="text">4 stars</label>
-      <input type="radio" id="star3" name="rate" value="3" />
-      <label for="star3" title="text">3 stars</label>
-      <input type="radio" id="star2" name="rate" value="2" />
-      <label for="star2" title="text">2 stars</label>
-      <input type="radio" id="star1" name="rate" value="1" />
-      <label for="star1" title="text">1 star</label>
+      <input type="radio" id="star5" name="rating" value="5" required />
+      <label for="star5" title="5 stars"><img src="star5.png" alt="5 stars" /></label>
+      <input type="radio" id="star4" name="rating" value="4" required />
+      <label for="star4" title="4 stars"><img src="star4.png" alt="4 stars" /></label>
+      <input type="radio" id="star3" name="rating" value="3" required />
+      <label for="star3" title="3 stars"><img src="star3.png" alt="3 stars" /></label>
+      <input type="radio" id="star2" name="rating" value="2" required />
+      <label for="star2" title="2 stars"><img src="star2.png" alt="2 stars" /></label>
+      <input type="radio" id="star1" name="rating" value="1" required />
+      <label for="star1" title="1 star"><img src="star1.png" alt="1 star" /></label>
     </div>
+    <div>
+      <label for="messageInput">Nội dung tin nhắn:</label>
+      <textarea id="messageInput" name="message"></textarea>
+    </div>
+    <button id="submitBtn">Gửi đánh giá</button>
+
+    <div id="message"></div>
     <div class="col-sm-6 col-md-2">
       <section>
         <div class="grid">
@@ -54,7 +61,6 @@
 <script>
   const videoPlayer = document.getElementById('video-player');
   const episodeButtons = document.querySelectorAll('.episode-button');
-
   episodeButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const episodeVideoId = button.dataset.episodeVideoId;
@@ -63,4 +69,49 @@
       videoPlayer.setAttribute('src', videoUrl);
     });
   });
+
+
+  const ratingForm = document.getElementById('ratingForm');
+  const rateContainer = document.querySelector('.rate');
+
+  const messageInput = document.getElementById('messageInput');
+  const submitBtn = document.getElementById('submitBtn');
+
+  ratingForm.addEventListener('submit', handleRatingSubmit);
+  submitBtn.addEventListener('click', handleRatingSubmit);
+
+  function handleRatingSubmit(event) {
+    event.preventDefault();
+
+    const selectedRating = document.querySelector('input[name="rating"]:checked');
+    const message = messageInput.value;
+
+    if (!selectedRating) {
+      alert('Vui lòng chọn đánh giá.');
+      return;
+    }
+
+    const ratingValue = selectedRating.value;
+
+    const formData = new FormData();
+    formData.append('rating', ratingValue);
+    formData.append('message', message);
+
+    const slug = window.location.pathname.replace('/', '');
+    const url = `/${slug}`;
+
+    fetch(url, {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        // Xử lý các hành động sau khi đánh giá thành công
+      })
+      .catch(error => {
+        console.error('Lỗi khi gửi yêu cầu đánh giá:', error);
+      });
+  }
+
 </script>

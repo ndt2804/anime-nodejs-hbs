@@ -1,5 +1,7 @@
 const Anime = require('../models/Anime.js');
 const Episodes = require('../models/Episodes.js');
+
+const Rate = require('../models/Rating.js');
 const { mongooseToObj } = require('../../utils/mongoose');
 const { multiMongooseToObj } = require('../../utils/mongoose');
 class AnimeController {
@@ -51,40 +53,40 @@ class AnimeController {
             })
             .catch(next);
     }
+
+
     updateRating(req, res, next) {
-        let sesh = req.session;
+        const sesh = req.session;
         // Kiểm tra xem người dùng đã đăng nhập chưa
-        if (!req.session.loggedIn) {
+        if (!sesh.loggedIn) {
             return res.status(401).json({ message: 'Bạn cần đăng nhập để đánh giá.' });
         }
-
         const animeId = req.body.animeId;
-        const rating = parseInt(req.body.rating);
+        const rating = parseFloat(req.body.rating);
 
-        Anime.findById(animeId)
-            .then((anime) => {
-                if (!anime) {
-                    // Bộ phim không tồn tại
-                    return res.status(404).json({ message: 'Bộ phim không tồn tại' });
+        Rate.findOne({ animeId, userId: sesh.userId })
+            .then((ratingData) => {
+                if (!ratingData) {
+                    // Tạo mới thông tin rating nếu chưa tồn tại
+                    ratingData = new Rate({
+                        animeId,
+                        userId: sesh.userId,
+                        rating,
+                        numRates: 1
+                    });
+                } else {
+                    // Cập nhật thông tin rating nếu đã tồn tại
+                    ratingData.rating = rating;
+                    ratingData.numRates += 1;
                 }
 
-                const currentRating = anime.rating || 0;
-                const currentNumRates = anime.numRates || 0;
-
-                // Tính toán tổng số rating mới và số người rate mới
-                const newTotalRating = currentRating + rating;
-                const newNumRates = currentNumRates + 1;
-
-                // Tính toán con số được lưu vào cơ sở dữ liệu (tổng số rating : số người rate)
-                const newAverageRating = newTotalRating / newNumRates;
-
-                anime.rating = newTotalRating;
-                anime.numRates = newNumRates;
-
-                return anime.save();
+                return ratingData.save();
             })
-            .then((updatedAnime) => {
-                res.json({ message: 'Đã cập nhật rating thành công', rating: updatedAnime.rating, numRates: updatedAnime.numRates });
+            .then((savedRating) => {
+                // Tính toán rating trung bình
+                const averageRating = savedRating.rating / savedRating.numRates;
+
+                res.json({ message: 'Đã cập nhật rating thành công', rating: averageRating });
             })
             .catch(next);
     }
