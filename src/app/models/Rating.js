@@ -15,7 +15,6 @@ const ratingSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    messageRating: [{ type: String }],
     numRates: {
         type: Number,
         default: 0

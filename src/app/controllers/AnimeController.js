@@ -20,6 +20,21 @@ class AnimeController {
             })
             .catch(next);
     }
+    info(req, res, next) {
+        let sesh = req.session;
+
+        Anime.findOne({ slug: req.params.slug })
+            .populate('episodes')
+            .then((anime) => {
+                res.render('animes/animeInfo', {
+                    animes: mongooseToObj(anime),
+                    loggedIn: sesh.loggedIn,
+                    userLogin: sesh.userLogin,
+
+                })
+            })
+            .catch(next);
+    }
     video(req, res, next) {
         let sesh = req.session;
         let pageData = {};
@@ -55,42 +70,56 @@ class AnimeController {
     }
 
 
-    updateRating(req, res, next) {
-        const sesh = req.session;
-        // Kiểm tra xem người dùng đã đăng nhập chưa
-        if (!sesh.loggedIn) {
-            return res.status(401).json({ message: 'Bạn cần đăng nhập để đánh giá.' });
-        }
-        const animeId = req.body.animeId;
-        const rating = parseFloat(req.body.rating);
+    // updateRating(req, res, next) {
+    //     const sesh = req.session;
+    //     // Kiểm tra xem người dùng đã đăng nhập chưa
+    //     if (!sesh.loggedIn) {
+    //         return res.status(401).json({ message: 'Bạn cần đăng nhập để đánh giá.' });
+    //     }
+    //     const animeId = req.body.anime._id;
+    //     const rating = parseFloat(req.body.rating);
 
-        Rate.findOne({ animeId, userId: sesh.userId })
-            .then((ratingData) => {
-                if (!ratingData) {
-                    // Tạo mới thông tin rating nếu chưa tồn tại
-                    ratingData = new Rate({
-                        animeId,
-                        userId: sesh.userId,
-                        rating,
-                        numRates: 1
-                    });
-                } else {
-                    // Cập nhật thông tin rating nếu đã tồn tại
-                    ratingData.rating = rating;
-                    ratingData.numRates += 1;
-                }
+    //     Rate.findOne({ animeId, userId: sesh.userId })
+    //         .then((ratingData) => {
+    //             if (!ratingData) {
+    //                 // Tạo mới thông tin rating nếu chưa tồn tại
+    //                 ratingData = new Rate({
+    //                     animeId,
+    //                     userId: sesh.userId,
+    //                     rating,
+    //                     numRates: 1
+    //                 });
+    //             } else {
+    //                 // Cập nhật thông tin rating nếu đã tồn tại
+    //                 ratingData.rating = rating;
+    //                 ratingData.numRates += 1;
+    //             }
 
-                return ratingData.save();
-            })
-            .then((savedRating) => {
-                // Tính toán rating trung bình
-                const averageRating = savedRating.rating / savedRating.numRates;
+    //             return ratingData.save();
+    //         })
+    //         .then((savedRating) => {
+    //             // Tính toán rating trung bình
+    //             const averageRating = savedRating.rating / savedRating.numRates;
 
-                res.json({ message: 'Đã cập nhật rating thành công', rating: averageRating });
-            })
-            .catch(next);
+    //             res.json({ message: 'Đã cập nhật rating thành công', rating: averageRating });
+    //         })
+    //         .catch(next);
+    // }
+    saveRating(req, res) {
+        const { _id, userId, rating } = req.body;
+
+        const newRating = new Rating({
+            animeId: _id,
+            userId: userId,
+            rating: rating
+        });
+
+        newRating.save().then(() => {
+            res.status(200).json({ message: 'Đánh giá đã được lưu vào cơ sở dữ liệu' });
+        }).catch((error) => {
+            res.status(500).json({ error: 'Lỗi khi lưu đánh giá vào cơ sở dữ liệu' });
+        });
     }
-
     // anime/create 
     create(req, res, next) {
         res.render('animes/create');
