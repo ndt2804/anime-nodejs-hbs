@@ -9,7 +9,9 @@ router.get('/createEpisodes', animeController.createEpisodes);
 router.post('/storeEp', animeController.storeEp);
 router.get('/:slug', animeController.video);
 router.get('/info/:slug', animeController.info);
-// router.post('/info/:slug', animeController.updateRating);
+router.post('/info/:slug', animeController.saveRating);
+
+
 
 
 

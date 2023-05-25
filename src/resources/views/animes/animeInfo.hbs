@@ -5,14 +5,14 @@
             {{animes.name}}
             <img src="{{animes.image}}" class="card-img-top" alt="...">
             <p>{{animes.description}}</p>
-
+            {{ animes.rating.rate }}
             <div class="badge-genres">
                 {{#each animes.genres}}
                 <div class="badge-genre">{{this}}</div>
                 {{/each}}
             </div>
         </div>
-        <form id="ratingForm" action="#">
+        <form id="ratingForm" action="{{animes.slug}}" method="POST">
             <div class="rate">
                 <input type="radio" id="star5" name="rating" value="5" required />
                 <label for="star5" title="5 stars"><img src="star5.png" alt="5 stars" /></label>
@@ -25,15 +25,8 @@
                 <input type="radio" id="star1" name="rating" value="1" required />
                 <label for="star1" title="1 star"><img src="star1.png" alt="1 star" /></label>
             </div>
-            <input type="submit" class="submit-btn" value="Submit">
+            <button type="submit" class="btn btn-primary">OK</button>
 
         </form>
     </div>
 </div>
-<script>
-    document.getElementById('ratingForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-        var rating = document.querySelector('input[name="rating"]:checked').value;
-        alert('Đánh giá của bạn là: ' + rating + ' sao.');
-    });
-</script>

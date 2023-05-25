@@ -22,39 +22,131 @@ class AnimeController {
     }
     info(req, res, next) {
         let sesh = req.session;
-
         Anime.findOne({ slug: req.params.slug })
-            .populate('episodes')
+            .populate('rating')
             .then((anime) => {
+                // res.json(anime);
                 res.render('animes/animeInfo', {
                     animes: mongooseToObj(anime),
                     loggedIn: sesh.loggedIn,
                     userLogin: sesh.userLogin,
-
-                })
+                });
             })
             .catch(next);
     }
+    saveRating = (req, res, next) => {
+        Anime.findOne({ slug: req.params.slug })
+            .then((anime) => {
+                const ratingValue = req.body.rating; // Lấy giá trị đánh giá từ body request
+
+                // Tìm hoặc tạo một đối tượng Rating cho anime
+                Rate.findOne({ animeId: anime._id })
+                    .then((rating) => {
+                        if (rating) {
+                            // Nếu đã tồn tại Rating, cập nhật giá trị và số lượt đánh giá
+                            rating.sumRate = parseInt(rating.sumRate) + parseInt(ratingValue);
+                            rating.count += 1;
+                            rating.rate = parseInt(rating.sumRate) / parseInt(rating.count);
+
+                        } else {
+                            // Nếu chưa tồn tại Rating, tạo mới đối tượng Rating
+                            rating = new Rate({
+                                animeId: anime._id,
+                                sumRate: ratingValue,
+                                rate: ratingValue,
+                                count: 1
+                            });
+                        }
+                        return rating.save();
+                    })
+                    .then((savedRating) => {
+                        // Cập nhật rating trong bảng Anime
+                        Anime.findOneAndUpdate({ slug: req.params.slug }, { rating: savedRating._id }, { new: true })
+                            .then(() => {
+                                // Xử lý thành công
+                                res.redirect('/success');
+                            })
+                            .catch((error) => {
+                                // Xử lý lỗi
+                                console.error(error);
+                                res.redirect('/error');
+                            });
+                    })
+                    .catch(next);
+            });
+    }
+    // video(req, res, next) {
+    //     let sesh = req.session;
+    //     let pageData = {};
+    //     // Lấy thông tin của video đang xem
+    //     Anime.findOne({ slug: req.params.slug })
+    //         .populate('episodes')
+    //         .populate('rating')
+    //         .then((anime) => {
+    //             pageData.anime = mongooseToObj(anime);
+
+    //             // Lấy thông tin của các video được đề xuất
+    //             Anime.find({ _id: { $ne: anime._id }, genres: { $in: anime.genres } })
+    //             .populate('rating')
+    //                 .then((recommendations) => {
+    //                     // Đếm số lượng thể loại chung và lưu vào mảng chungCount
+    //                     const chungCount = recommendations.map((video) => {
+    //                         const commonGenres = video.genres.filter((genre) => anime.genres.includes(genre));
+    //                         return { video: video, count: commonGenres.length };
+    //                     });
+    //                     // Sắp xếp danh sách các video dựa trên số lượng thể loại chung
+    //                     chungCount.sort((a, b) => b.count - a.count);
+    //                     // Lấy ra 5 video đề xuất có số lượng thể loại chung lớn nhất
+    //                     const recommendedVideos = chungCount.slice(0, 5).map((item) => item.video);
+
+    //                     pageData.recommendations = multiMongooseToObj(recommendedVideos);
+    //                     res.render('animes/animes', {
+    //                         pageData: pageData,
+    //                         loggedIn: sesh.loggedIn,
+    //                         userLogin: sesh.userLogin,
+
+    //                     });
+    //                 })
+    //                 .catch(next);
+    //         })
+    //         .catch(next);
+    // }
     video(req, res, next) {
         let sesh = req.session;
         let pageData = {};
         // Lấy thông tin của video đang xem
         Anime.findOne({ slug: req.params.slug })
             .populate('episodes')
+            .populate('rating')
             .then((anime) => {
                 pageData.anime = mongooseToObj(anime);
 
                 // Lấy thông tin của các video được đề xuất
                 Anime.find({ _id: { $ne: anime._id }, genres: { $in: anime.genres } })
+                    .populate('rating')
                     .then((recommendations) => {
                         // Đếm số lượng thể loại chung và lưu vào mảng chungCount
                         const chungCount = recommendations.map((video) => {
                             const commonGenres = video.genres.filter((genre) => anime.genres.includes(genre));
                             return { video: video, count: commonGenres.length };
                         });
-                        // Sắp xếp danh sách các video dựa trên số lượng thể loại chung
-                        chungCount.sort((a, b) => b.count - a.count);
-                        // Lấy ra 5 video đề xuất có số lượng thể loại chung lớn nhất
+                        // Sắp xếp danh sách các video dựa trên số lượng thể loại chung và rating
+                        chungCount.sort((a, b) => {
+                            // Sắp xếp theo số lượng thể loại chung giảm dần
+                            if (a.count !== b.count) {
+                                return b.count - a.count;
+                            } else {
+                                // Sắp xếp theo rating giảm dần nếu cùng có số lượng thể loại chung
+                                if (a.video.rating && b.video.rating) {
+                                    return b.video.rating.rate - a.video.rating.rate;
+                                } else {
+                                    // Đặt video không có rating ở cuối danh sách
+                                    if (!a.video.rating) return 1;
+                                    if (!b.video.rating) return -1;
+                                }
+                            }
+                        });
+                        // Lấy ra 5 video đề xuất có số lượng thể loại chung lớn nhất và rating cao nhất
                         const recommendedVideos = chungCount.slice(0, 5).map((item) => item.video);
 
                         pageData.recommendations = multiMongooseToObj(recommendedVideos);
@@ -67,58 +159,6 @@ class AnimeController {
                     .catch(next);
             })
             .catch(next);
-    }
-
-
-    // updateRating(req, res, next) {
-    //     const sesh = req.session;
-    //     // Kiểm tra xem người dùng đã đăng nhập chưa
-    //     if (!sesh.loggedIn) {
-    //         return res.status(401).json({ message: 'Bạn cần đăng nhập để đánh giá.' });
-    //     }
-    //     const animeId = req.body.anime._id;
-    //     const rating = parseFloat(req.body.rating);
-
-    //     Rate.findOne({ animeId, userId: sesh.userId })
-    //         .then((ratingData) => {
-    //             if (!ratingData) {
-    //                 // Tạo mới thông tin rating nếu chưa tồn tại
-    //                 ratingData = new Rate({
-    //                     animeId,
-    //                     userId: sesh.userId,
-    //                     rating,
-    //                     numRates: 1
-    //                 });
-    //             } else {
-    //                 // Cập nhật thông tin rating nếu đã tồn tại
-    //                 ratingData.rating = rating;
-    //                 ratingData.numRates += 1;
-    //             }
-
-    //             return ratingData.save();
-    //         })
-    //         .then((savedRating) => {
-    //             // Tính toán rating trung bình
-    //             const averageRating = savedRating.rating / savedRating.numRates;
-
-    //             res.json({ message: 'Đã cập nhật rating thành công', rating: averageRating });
-    //         })
-    //         .catch(next);
-    // }
-    saveRating(req, res) {
-        const { _id, userId, rating } = req.body;
-
-        const newRating = new Rating({
-            animeId: _id,
-            userId: userId,
-            rating: rating
-        });
-
-        newRating.save().then(() => {
-            res.status(200).json({ message: 'Đánh giá đã được lưu vào cơ sở dữ liệu' });
-        }).catch((error) => {
-            res.status(500).json({ error: 'Lỗi khi lưu đánh giá vào cơ sở dữ liệu' });
-        });
     }
     // anime/create 
     create(req, res, next) {

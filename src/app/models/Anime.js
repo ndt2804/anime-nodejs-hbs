@@ -11,7 +11,7 @@ const Anime = new Schema({
     slug: { type: String, slug: 'name', unique: true },
     videoID: { type: String, required: true },
     episodes: [{ type: Schema.Types.ObjectId, ref: 'Episodes' }],
-    rating: { type: Number, default: 0 },
+    rating: { type: Schema.Types.ObjectId, ref: 'Rating', default: null },
     genres: { type: [String], required: true },
 },
     {
