@@ -43,11 +43,13 @@
         <div class="grid">
             {{#each animes}}
             <div class="grid-items">
-                <img src="{{this.image}}" class="card-img-top" alt="...">
-                <button class="items-button">More info</button>
+                <a href="/anime/{{this.slug}}">
+
+                    <img src="{{this.image}}" class="card-img-top" alt="...">
+                    <button class="items-button">More info</button>
+                </a>
             </div>
             {{/each}}
-
         </div>
     </div>
 

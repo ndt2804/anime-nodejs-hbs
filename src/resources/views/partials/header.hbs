@@ -16,9 +16,11 @@
     <div class="nav_buttons">
       {{#if loggedIn}}
       <h3>{{userLogin.mail}}</h3>
+      <button><a href="/logout">Log Out</a></button>
+
       {{else}}
-      <button><a href="/logout">Logout</a></button>
-      <button class="btn-login"><a href="/login">Login</a></button>
+      <button><a href="/login/new-act">Sign Up</a></button>
+      <button class="btn-login"><a href="/login">Sign In</a></button>
       {{/if}}
     </div>
 

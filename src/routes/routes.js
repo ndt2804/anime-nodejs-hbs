@@ -15,7 +15,18 @@ function route(app) {
   app.use('/contact', contactRouter);
   app.use('/admin', adminRouter);
   app.use('/login', loginRouter);
-  app.use('/auth', authRouter);
+  app.use('/logout', (req, res) => {
+    // Xóa session
+    req.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // Đăng xuất thành công, chuyển hướng về trang đăng nhập hoặc trang chính
+        res.redirect('/login'); // Đổi '/login' thành đường dẫn mong muốn
+      }
+    });
+  });
+  // app.use('/auth', authRouter);
   app.use('/search', (req, res) => {
     res.render('search');
   })
