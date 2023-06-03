@@ -75,42 +75,7 @@ class AnimeController {
                     .catch(next);
             });
     }
-    // video(req, res, next) {
-    //     let sesh = req.session;
-    //     let pageData = {};
-    //     // Lấy thông tin của video đang xem
-    //     Anime.findOne({ slug: req.params.slug })
-    //         .populate('episodes')
-    //         .populate('rating')
-    //         .then((anime) => {
-    //             pageData.anime = mongooseToObj(anime);
 
-    //             // Lấy thông tin của các video được đề xuất
-    //             Anime.find({ _id: { $ne: anime._id }, genres: { $in: anime.genres } })
-    //             .populate('rating')
-    //                 .then((recommendations) => {
-    //                     // Đếm số lượng thể loại chung và lưu vào mảng chungCount
-    //                     const chungCount = recommendations.map((video) => {
-    //                         const commonGenres = video.genres.filter((genre) => anime.genres.includes(genre));
-    //                         return { video: video, count: commonGenres.length };
-    //                     });
-    //                     // Sắp xếp danh sách các video dựa trên số lượng thể loại chung
-    //                     chungCount.sort((a, b) => b.count - a.count);
-    //                     // Lấy ra 5 video đề xuất có số lượng thể loại chung lớn nhất
-    //                     const recommendedVideos = chungCount.slice(0, 5).map((item) => item.video);
-
-    //                     pageData.recommendations = multiMongooseToObj(recommendedVideos);
-    //                     res.render('animes/animes', {
-    //                         pageData: pageData,
-    //                         loggedIn: sesh.loggedIn,
-    //                         userLogin: sesh.userLogin,
-
-    //                     });
-    //                 })
-    //                 .catch(next);
-    //         })
-    //         .catch(next);
-    // }
     video(req, res, next) {
         let sesh = req.session;
         let pageData = {};

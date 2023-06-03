@@ -572,13 +572,13 @@ h1 {
   box-shadow: 0 15px 10px rgba(0, 0, 0, 0.4);
 }
 
-.img {
+.wrapper .img {
   position: relative;
   width: 80%;
   height: 100%;
 }
 
-.img img {
+.wrapper .img img {
   position: relative;
   height: 70%;
   width: calc(150% - 80px);
@@ -716,4 +716,235 @@ h1 {
 .rate>input:checked~label:hover~label,
 .rate>label:hover~input:checked~label {
   color: #c59b08;
+}
+
+
+
+
+.article-card {
+  display: flex;
+  grid-template-columns: 285px minmax(300px, 445px);
+  max-width: 1080px;
+  margin-bottom: 20px;
+  height: 239px;
+  border-radius: 10px;
+  box-shadow: 6px 6px 5px hsla(0, 0%, 0%, 0.02),
+    25px 25px 20px hsla(0, 0%, 0%, 0.03),
+    100px 100px 80px hsla(0, 0%, 0%, 0.05);
+}
+
+.img-box {
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+  flex-grow: 0;
+}
+
+.article-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left;
+  transition: all 0.5s ease;
+}
+
+.article-card:hover .article-banner {
+  transform: scale(1.1);
+}
+
+.article-content {
+  display: flex;
+  background: #fff;
+  padding: 32px 40px;
+  border-radius: 0 10px 10px 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.article-title {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.article-text {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.acticle-content-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.author-name {
+  color: #333;
+  font-size: 14px;
+}
+
+.publish-date {
+  color: #666;
+  font-size: 14px;
+}
+
+.author-avater {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+
+
+
+.contact {
+  padding: 8% 0 0;
+
+}
+
+.login-page {
+  width: 400px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 400px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+  font-family: "Poppins", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  border-radius: 7px;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+
+}
+
+.form textarea {
+  font-family: "Poppins", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  border-radius: 7px;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.form button {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #234666;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  border-radius: 7px;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:hover,
+.form button:active,
+.form button:focus {
+  background: #0e2941;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #234666;
+  text-decoration: none;
+}
+
+.forum button {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #234666;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  border-radius: 7px;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+
+
+.news button {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #234666;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  border-radius: 7px;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+
+
+
+.news .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px 10px;
+}
+
+
+.news .grid-items {
+  position: relative;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #ffffff;
+
+
+}
+
+.news .grid-items img {
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 1s;
+  width: 297.5px;
+  height: 204px;
+}
+
+.news .content-news {
+  padding-top: 20px;
 }

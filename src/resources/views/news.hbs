@@ -1,14 +1,19 @@
-<div class="mt-4">
-    <div class="row">
+<div class="news">
+    <div class="notification">
+        <h1>ĐÂY LÀ TRANG TIN TỨC</h1>
+    </div>
+    {{!-- {{#if loggedIn}} --}}
+
+    <a href="/news/new-post"><button type="submit" class="btn btn-primary">New Post</button></a>
+    {{!-- {{/if}} --}}
+    <div class="grid">
         {{#each posts}}
-        <div class="col-sm-6" col-lg-4>
-            <div class="card" style="width: 18rem;">
-                <span>{{this.tittle}}</span>
-                <div class="card-body">
-                    <img src="{{this.image}}" alt="">
-                    <span>{{this.content}}</span>
-                    <span>{{this.author}}</span>
-                </div>
+        <div class="grid-items">
+            <div class="image-news">
+                <img src="{{this.image}}" alt="...">
+            </div>
+            <div class="content-news">
+                <h3>{{this.content}}</h3>
             </div>
         </div>
         {{/each}}
