@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-sm-8 col-md-5">
             {{!-- <h2>{{pageData.anime.name}}</h2> --}}
-            {{animes.name}}
-            <img src="{{animes.image}}" class="card-img-top" alt="...">
+            <h2>{{animes.name}}</h2>
+            <img src="{{animes.image}}" height="500px" width="500px" alt="...">
             <p>{{animes.description}}</p>
             {{ animes.rating.rate }}
             <div class="badge-genres">
@@ -12,6 +12,9 @@
                 {{/each}}
             </div>
         </div>
+        <button>
+            <a href="/anime/{{animes.slug}}">XEM NGAY</a>
+        </button>
         <form id="ratingForm" action="{{animes.slug}}" method="POST">
             <div class="rate">
                 <input type="radio" id="star5" name="rating" value="5" required />

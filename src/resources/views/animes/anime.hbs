@@ -43,7 +43,7 @@
         <div class="grid">
             {{#each animes}}
             <div class="grid-items">
-                <a href="/anime/{{this.slug}}">
+                <a href="/anime/info/{{this.slug}}">
 
                     <img src="{{this.image}}" class="card-img-top" alt="...">
                     <button class="items-button">More info</button>
@@ -53,18 +53,19 @@
         </div>
     </div>
 
-    <div class="anime-news">
+    {{!-- <div class="anime-news">
         <h3>ANIME MỚI CẬP NHẬT</h3>
         <div class="grid">
-            {{#each animes}}
+            {{#each sortedByRating}}
             <div class="grid-items">
                 <img src="{{image}}" class="card-img-top" alt="...">
             </div>
 
             {{/each}}
         </div>
-    </div>
-    <div class="anime-news">
+    </div> --}}
+
+    {{!-- <div class="anime-news">
         <h3>ANIME TẤT CẢ</h3>
         <div class="grid">
             {{#each animes}}
@@ -73,7 +74,7 @@
             </div>
             {{/each}}
         </div>
-    </div>
+    </div> --}}
 
 </div>
 <script type="text/javascript">

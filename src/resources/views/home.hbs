@@ -24,7 +24,7 @@
         <div class="grid">
             {{#each animes}}
             <div class="grid-items">
-                <a href="/anime/{{this.slug}}">
+                <a href="/anime/info/{{this.slug}}">
                     <img src="{{this.image}}" alt=""> </a>
             </div>
             {{/each}}
@@ -33,35 +33,12 @@
     <div class="content">
         <h3>Anime Hot</h3>
         <div class="grid">
+            {{#each sortedByRating}}
             <div class="grid-items">
-                <img src="/img/anis.png" alt="">
+                <img src="{{image}}" class="card-img-top" alt="...">
             </div>
-            <div class="grid-items">
-                <img src="/img/anis.png" alt="">
-            </div>
-            <div class="grid-items">
-                <img src="/img/anis.png" alt="">
-            </div>
-            <div class="grid-items">
-                <img src="/img/anis.png" alt="">
-            </div>
-        </div>
-    </div>
-    <div class="content">
-        <h3>Anime Thích là ĐẶt</h3>
-        <div class="grid">
-            <div class="grid-items">
-                <img src="/img/anis.png" alt="">
-            </div>
-            <div class="grid-items">
-                <img src="/img/anis.png" alt="">
-            </div>
-            <div class="grid-items">
-                <img src="/img/anis.png" alt="">
-            </div>
-            <div class="grid-items">
-                <img src="/img/anis.png" alt="">
-            </div>
+
+            {{/each}}
         </div>
     </div>
 

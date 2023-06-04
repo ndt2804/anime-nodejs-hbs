@@ -15,7 +15,22 @@
     </form>
     <div class="nav_buttons">
       {{#if loggedIn}}
-      <h3>{{userLogin.mail}}</h3>
+      {{!-- <div class="nav_items">
+        <ul>
+          <li class="avtn">
+            <img src="https://i.imgur.com/2QKIaJ5.png" alt="profile_img" width="40px" height="40px">
+
+            <div class="dd_menu">
+              <ul>
+                <li>Profile</li>
+                <li>Settings</li>
+                <li>Logout</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div> --}}
+      <h4>{{userLogin.mail}}</h4>
       <button><a href="/logout">Log Out</a></button>
 
       {{else}}
