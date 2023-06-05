@@ -54,7 +54,6 @@ class AnimeController {
         Anime.findOne({ slug: req.params.slug })
             .populate('rating')
             .then((anime) => {
-                console.log(anime);
                 // res.json(anime);
                 res.render('animes/animeInfo', {
                     animes: mongooseToObj(anime),

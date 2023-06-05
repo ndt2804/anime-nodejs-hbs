@@ -16,7 +16,7 @@ class LoginController {
     let mail = req.body.emailInput;
     let pass = req.body.pwdInput;
     let loginSuccess = false;
-    console.log(req.body);
+    // console.log(req.body);
     let sesh = req.session;
     const filter = { mail: mail };
     sesh.loggedIn = false;
@@ -26,7 +26,7 @@ class LoginController {
       let usersResult = await users.findOne(filter).then(async (data) => {
         if (data) {
           // check if password matches
-          console.log(data.password);
+          // console.log(data.password);
           let passResult = await bcrypt.compare(pass, data.password).then((isMatch) => {
             if (isMatch) {
               // ok - set sessions
@@ -34,8 +34,10 @@ class LoginController {
               loginSuccess = true;
               sesh.userLogin = data;
             }
+
           });
         }
+
       });
     }
 
@@ -50,7 +52,7 @@ class LoginController {
     const mail = req.body.emailInput;
     const username = req.body.usernameInput;
     const pwd = req.body.pwdInput;
-    console.log(req.body);
+    // console.log(req.body);
     const filter = { mail: mail };
     if (mail != '' && pwd != '' && username != '') {
       const userSearch = await users.findOne(filter).then(async (data) => {
