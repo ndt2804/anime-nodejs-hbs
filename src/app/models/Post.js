@@ -8,7 +8,8 @@ const Post = new Schema({
     sumary: { type: String, required: true },
     content: { type: String, required: true },
     userId: { type: Schema.Types.ObjectId, ref: 'User' },
-    createAt: { type: Date, default: Date.now }
+    createAt: { type: Date, default: Date.now },
+    Comment: { type: Schema.Types.ObjectId, ref: 'Comment' },
 
 
 });

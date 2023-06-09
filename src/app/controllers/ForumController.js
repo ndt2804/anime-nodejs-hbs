@@ -1,4 +1,5 @@
 const Post = require('../models/Post');
+const Comment = require('../models/Comment');
 const { multiMongooseToObj, mongooseToObj } = require('../../utils/mongoose');
 class ContactController {
 
@@ -40,10 +41,27 @@ class ContactController {
     show(req, res, next) {
         let sesh = req.session;
         console.log(req.params);
+        const comment = req.body.comment;
+        const userId = sesh.userLogin._id;
+        const postId = req.params._id;
+        console.log(req.body.comment);
+
+        const newComment = new Comment({
+            comment: comment,
+            userId: userId,
+            postId: postId,
+        });
+        newComment.save()
+            .then(() => res.redirect('/forum/' + postId))
+            .catch(error => {
+                console.log(error);
+                // Xử lý lỗi nếu cần
+            });
+
         Post.findOne({ _id: req.params.id })
             .populate('userId')
+            .populate('Comment')
             .then((post) => {
-                // res.json(post);
                 res.render('post-forum', {
                     post: mongooseToObj(post),
                     loggedIn: sesh.loggedIn,
@@ -52,6 +70,7 @@ class ContactController {
             })
             .catch(next);
     }
+
     index(req, res, next) {
         let sesh = req.session;
         Post.find({})
