@@ -38,30 +38,49 @@ class ContactController {
             });
     }
     ///GET
+
+    // Comment(req, res, next) {
+
+    // }
     show(req, res, next) {
         let sesh = req.session;
-        console.log(req.params);
+        if (!sesh.loggedIn) {
+            // Người dùng chưa đăng nhập, chuyển hướng về trang đăng nhập hoặc hiển thị thông báo lỗi
+            return res.render('login', { title: 'Login', error: 'You need to login first.' });
+        }
         const comment = req.body.comment;
         const userId = sesh.userLogin._id;
-        const postId = req.params._id;
-        console.log(req.body.comment);
+        const postId = req.params.id;
 
         const newComment = new Comment({
-            comment: comment,
+            content: comment,
             userId: userId,
             postId: postId,
         });
+
         newComment.save()
-            .then(() => res.redirect('/forum/' + postId))
+            .then((savedComment) => {
+                // Lưu id_comment trong Post.comment
+                return Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $push: { Comment: savedComment._id } },
+                    { new: true }
+                );
+            })
+            .then((updatedPost) => {
+                // Điều hướng đến trang chi tiết bài viết
+                res.redirect('/forum/' + postId);
+            })
             .catch(error => {
                 console.log(error);
                 // Xử lý lỗi nếu cần
             });
 
-        Post.findOne({ _id: req.params.id })
+        Post.findOne({ _id: postId })
             .populate('userId')
-            .populate('Comment')
+            .populate('Comment') // Sửa đổi tên thuộc tính tại đây nếu cần
             .then((post) => {
+                console.log(post);
                 res.render('post-forum', {
                     post: mongooseToObj(post),
                     loggedIn: sesh.loggedIn,
@@ -70,6 +89,8 @@ class ContactController {
             })
             .catch(next);
     }
+
+
 
     index(req, res, next) {
         let sesh = req.session;

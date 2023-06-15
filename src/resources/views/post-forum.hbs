@@ -3,6 +3,23 @@
 <h2>{{post.content}}</h2>
 
 <h3>{{post.userId.username}}</h3>
+{{#each post.Comment}}
+<div class="user-comment">
+    <img src="/img/anis.png" alt="User Avatar">
+
+    <div class="user-info">
+        <div class="user-name">{{ this.userId }}</div>
+        <div class="comment-text">{{ this.content }}</div>
+        <div class="comment-timestamp">{{ this.createAt }}</div>
+    </div>
+</div>
+
+{{!-- <li>
+    <p>{{ this.content }}</p>
+    <p>By: {{ this.userId }}</p>
+    <p>Posted at: {{ this.createAt }}</p>
+</li> --}}
+{{/each}}
 
 <form method="POST" action="/forum/{{post._id}}">
 

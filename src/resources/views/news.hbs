@@ -3,8 +3,11 @@
         <h1>ĐÂY LÀ TRANG TIN TỨC</h1>
     </div>
     {{!-- {{#if loggedIn}} --}}
+    {{#if loggedIn}}
 
     <a href="/news/new-post"><button type="submit" class="btn btn-primary">New Post</button></a>
+    {{/if}}
+
     {{!-- {{/if}} --}}
     <div class="grid">
         {{#each posts}}

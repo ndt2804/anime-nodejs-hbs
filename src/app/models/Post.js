@@ -9,7 +9,7 @@ const Post = new Schema({
     content: { type: String, required: true },
     userId: { type: Schema.Types.ObjectId, ref: 'User' },
     createAt: { type: Date, default: Date.now },
-    Comment: { type: Schema.Types.ObjectId, ref: 'Comment' },
+    Comment: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
 
 
 });
