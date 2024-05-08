@@ -1,0 +1,61 @@
+<header class="text-gray-600 body-font">
+  <div
+    class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
+  >
+    <a
+      class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+      href="/"
+    >
+      <span class="ml-3 text-xl">AnimuTV</span>
+
+    </a>
+    <nav
+      class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center"
+    >
+      <a class="mr-5 hover:text-gray-900" href="/">HOME</a>
+      <a class="mr-5 hover:text-gray-900" href="/anime">ANIME</a>
+      <a class="mr-5 hover:text-gray-900" href="/news">NEWS</a>
+      <a class="mr-5 hover:text-gray-900" href="/forum">FORUM</a>
+      <a class="mr-5 hover:text-gray-900" href="/contact">CONTACT</a>
+    </nav>
+    {{#if loggedIn}}
+      {{! <div class="nav_items">
+        <ul>
+          <li class="avtn">
+            <img src="https://i.imgur.com/2QKIaJ5.png" alt="profile_img" width="40px" height="40px">
+
+            <div class="dd_menu">
+              <ul>
+                <li>Profile</li>
+                <li>Settings</li>
+                <li>Logout</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div> }}
+      <h4>{{userLogin.mail}}</h4>
+      <button><a href="/logout">Log Out</a></button>
+
+    {{else}}
+      <a href="/login">
+        <button
+          class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-slate-900 rounded-lg bg-gray-100"
+        >
+          <span class="relative px-8 py-2.5 rounded-md bg-gray-100">
+            Login
+          </span>
+        </button>
+      </a>
+      <a href="/login/new-act">
+        <button
+          class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-slate-900 rounded-lg bg-amber-300"
+        >
+          <span class="relative px-8 py-2.5 rounded-md bg-amber-300">
+            Sign Up
+          </span>
+        </button>
+      </a>
+    {{/if}}
+  </div>
+</header>
