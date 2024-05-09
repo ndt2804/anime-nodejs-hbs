@@ -6,11 +6,8 @@
       "use": "@vercel/node"
     },
     {
-      "src": "assets/*.css",
-      "use": "@vercel/static-build",
-      "config": {
-        "zeroConfig": true
-      }
+      "src": "assets/style.css",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -18,5 +15,10 @@
       "src": "/(.*)",
       "dest": "/index.js"
     }
-  ]
+  ],
+  "hooks": {
+    "build": {
+      "command": "npm run build-css"
+    }
+  }
 }
