@@ -1,26 +1,72 @@
-<div class="login-page">
-    <div class="form">
-        <h3>Tạo Anime</h3>
-        <form method="POST" action="/anime/storeEp">
-            <label for="anime-select" hidden>Anime</label>
-            <select id="anime-select" name="_id" value="default">
-                {{#each animes}}
-                <option value="{{this._id}}">{{this.name}}</option>
-                {{/each}}
-            </select>
-            <div class="form-group">
-                <label for="episode">episode </label>
-                <input type="text" class="form-control" id="episode" name="episode">
-            </div>
-            <div class="form-group">
-                <label for="title">title</label>
-                <input type="text" class="form-control" id="title" name="title">
-            </div>
-            <div class="form-group">
-                <label for="episode_video_id">episode_video_id</label>
-                <input type="text" class="form-control" id="episode_video_id" name="episode_video_id">
-            </div>
-            <button type="submit" class="btn btn-primary">OK</button>
+<section class="bg-white mx-auto p-20">
+  <div
+    class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0"
+  >
+
+    <div
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1
+          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+        >
+          Add Episodes
+        </h1>
+        <form
+          class="space-y-4 md:space-y-6"
+          method="POST"
+          action="/anime/storeEp"
+        >
+
+          <select
+            id="anime-select"
+            name="_id"
+            value="default"
+            class="appearance-none row-start-1 col-start-1 bg-slate-50 dark:bg-slate-800 ..."
+          >
+            {{#each animes}}
+              <option value="{{this._id}}">{{this.name}}</option>
+            {{/each}}
+          </select>
+          <div>
+            <label
+              for="episode"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Episode</label>
+            <input
+              type="text"
+              class="form-control"
+              id="episode"
+              name="episode"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Vol ?"
+              required=""
+            />
+          </div>
+          <div>
+            <label
+              for="episode_video_id"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Episode</label>
+            <input
+              type="text"
+              class="form-control"
+              id="episode_video_id"
+              name="episode_video_id"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="video id"
+              required=""
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-cyan-400 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          >Up Load</button>
+
         </form>
+      </div>{{#if error}}
+        <div class="login-error">{{error}}</div>
+      {{/if}}
     </div>
-</div>
+  </div>
+</section>

@@ -5,10 +5,8 @@ const Schema = mongoose.Schema;
 const Episodes = new Schema({
   episode_video_id: { type: String, required: true },
   episode: { type: String, required: true },
-  title: { type: String, required: true },
-
-
+  releaseAt: { type: Date, default: Date.now },
 });
 
 // Tạo model cho tập phim
-module.exports = mongoose.model('Episodes', Episodes);
+module.exports = mongoose.model("Episodes", Episodes);

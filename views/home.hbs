@@ -1,29 +1,27 @@
 <section class="container mx-auto">
-    
     <div class="flex flex-row pl-4 py-2 gap-2 items-center border rounded-lg shadow overflow-hidden bg-gray-900 border-violet-400">
-	<span class="flex-shrink-0 inline-flex mx-3 item-center justify-center leading-none rounded-full bg-violet-400 text-gray-900">
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-8 w-8">
-			<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-		</svg>
-	</span>
-	<div class="flex-1 p-2">
-		<p class="text-sm text-gray-100">Ad obcaecati eaque eum aut, similique perferendis, reprehenderit odit nulla aliquam ex nostrum repellat</p>
-	</div>
-	<button type="button" class="ml-6 p-2 text-gray-400">
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-			<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-		</svg>
-	</button>
-</div>
-
+	    <span class="flex-shrink-0 inline-flex mx-3 item-center justify-center leading-none rounded-full bg-violet-400 text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-8 w-8">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+        </svg>
+	    </span>
+	    <div class="flex-1 p-2">
+		    <p class="text-sm text-gray-100">The server runs for free so it's a bit slow. I hope everyone understands. If anyone is willing to donate so the admin can run the server better, please contact contact.</p>
+	    </div>
+      <button type="button" class="ml-6 p-2 text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+	    </button>
+    </div>
 </section>
-<section class="text-gray-600 body-font">
 
+<section class="text-gray-600 body-font">
     <div class="container items-center justify-center w-full mx-auto ">
-        <section class="grid grid-cols-1 md:grid-cols-2 items-center  sm:p-10 my-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center  sm:p-10 my-2">
             <div class="space-y-3">
                 <p class="uppercase font-poppins text-sm text-[#DF6951] font-bold">
-                    Cộng đồng thông tin Yuri
+                    Japanese anime community in Viet Nam
                 </p>
                 <div class="font-volkhov font-bold text-5xl md:text-6xl lg:text-8xl text-[#181E4B]">
                     <div class="flex space-x-3">
@@ -36,7 +34,7 @@
                     <div>and update the latest news</div>
                 </div>
                 <p class="font-poppins text-gray-500 text-sm">
-                    Yuri-ours official website, providing free yuri knowledge resources.
+                    Website to watch free movies from YouTube
                 </p>
                 <div class="flex items-center space-x-3">
                     <button type="button" aria-label="Play demo" class="font-poppins flex mt-5">
@@ -71,40 +69,47 @@
            
     </div>
 </section>
-<section class="text-gray-600 body-font">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-wrap -m-4">
- {{#each animes}}
-  <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <a href="/anime/info/{{this.slug}}" class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block"  src="{{this.image}}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{this.name}}</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">{{this.name}}</h2>
-        </div>
-      </div>
-    {{/each}}
-    </div>
-  </div>
-</section>
-<section class="text-gray-600 body-font">
-  <div class="container px-5 py-24 mx-auto">
-    			<h2 class="text-3xl font-bold">Bảng Xếp Hạng</h2>
 
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    			<h2 class="text-3xl font-bold">New Update</h2>
+    <div class="flex flex-wrap -m-4">
+        {{#each latestAnimeWithEpisodes}}
+        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a href="/anime/info/{{this.anime.slug}}" class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" class="object-cover object-center w-full h-full block"  src="{{this.anime.image}}">
+              </a>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{this.anime.name}}</h3>
+
+                <h2 class="text-gray-900 title-font text-lg font-medium">{{this.anime.name}}</h2>
+              </div>
+            </div>
+         {{/each}}
+
+      </div>
+
+  </div>
+
+</section>
+
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    			<h2 class="text-3xl font-bold">Top Movies</h2>
     <div class="flex flex-wrap -m-4">
         {{#each sortedByRating}}
-  <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <a href="/anime/info/{{this.slug}}" class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block"  src="{{this.image}}">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{this.name}}</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">{{this.name}}</h2>
-        </div>
+        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+              <a href="/anime/info/{{this.slug}}" class="block relative h-48 rounded overflow-hidden">
+                <img alt="ecommerce" class="object-cover object-center w-full h-full block"  src="{{this.image}}">
+              </a>
+              <div class="mt-4">
+                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{this.name}}</h3>
+                <h2 class="text-gray-900 title-font text-lg font-medium">{{this.name}}</h2>
+              </div>
+            </div>
+         {{/each}}
+         
       </div>
-    {{/each}}
-    </div>
   </div>
 </section>
 <section class="py-6 sm:py-12 dark:bg-gray-100 dark:text-gray-800">
@@ -212,5 +217,4 @@
       </div>
     </div>
   </div>
-</section>
 </section>

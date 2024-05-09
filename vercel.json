@@ -15,10 +15,5 @@
       "src": "/(.*)",
       "dest": "/index.js"
     }
-  ],
-  "hooks": {
-    "build": {
-      "command": "npm run build-css"
-    }
-  }
+  ]
 }
